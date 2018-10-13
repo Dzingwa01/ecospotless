@@ -18,7 +18,7 @@ import {mainListItems, secondaryListItems} from '../Navigation';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-
+import axios from 'axios';
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -110,7 +110,8 @@ class Dashboard extends React.Component {
         this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
         this.handleMenu = this.handleMenu.bind(this);
         this.register = this.register.bind(this);
-        this.login = this.login.bind(this);
+        this.logout = this.logout.bind(this);
+        this.profile = this.profile.bind(this);
         this.handleClose = this.handleClose.bind(this);
     }
 
@@ -132,9 +133,27 @@ class Dashboard extends React.Component {
         this.setState({anchorEl: event.currentTarget});
     }
 
-    login() {
-        window.location.href = '/login';
-        this.setState({ anchorEl: null });
+    logout() {
+        let input = "logout";
+        let component = this;
+        axios.post('/logout',input).then(function(response){
+            console.log("reponse logout",response);
+            if(response.data.status==200){
+                component.setState({message:response.data.message,open:true});
+                window.location.href ='/';
+            }else{
+                component.setState({message:response.data.message,open:true});
+            }
+
+        }).catch((error)=>{
+            component.setState({message:response.data.message,open:true});
+            this.setState({message:"Error occured please contact support@ecospotless.co.za",open:true});
+
+        });
+    }
+
+    profile() {
+
     }
 
     register() {
@@ -197,8 +216,8 @@ class Dashboard extends React.Component {
                                 open={open}
                                 onClose={this.handleClose}
                             >
-                                <MenuItem onClick={this.handleMenu}>Profile</MenuItem>
-                                <MenuItem onClick={this.handleMenu}>Logout</MenuItem>
+                                <MenuItem onClick={this.profile}>Profile</MenuItem>
+                                <MenuItem onClick={this.logout}>Logout</MenuItem>
                             </Menu>
                         </Toolbar>
                     </AppBar>

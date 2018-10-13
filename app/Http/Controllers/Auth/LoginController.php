@@ -142,4 +142,12 @@ class LoginController extends Controller
         return 'email';
     }
 
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        return response()->json(["status"=>200,"message"=>"You have been logged out"]);
+    }
 }

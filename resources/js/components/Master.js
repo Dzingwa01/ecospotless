@@ -126,14 +126,13 @@ class Master extends React.Component {
             console.log("response", response.data);
             if(response.data.status==200){
                 component.setState({auth:true});
-                // window.location.href ='/dashboard';
+              
             }else{
                 component.setState({auth:true});
             }
 
         }).catch((error)=>{
-            component.setState({message:response.data.message,open:true});
-            this.setState({message:"Error occured please contact support@ecospotless.co.za",open:true});
+            console.log("error",error);
 
         });
     }
