@@ -4,9 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -28,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+//    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -50,7 +54,9 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
+            'surname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'contact_number'=>'required',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -65,8 +71,27 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
+            'surname' => $data['surname'],
+            'contact_number' => $data['contact_number'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'verification_token'=>base64_encode($data['email']),
+            'verified'=>0
         ]);
+    }
+
+    public function register(Request $request)
+    {
+        DB::beginTransaction();
+        try{
+            $this->validator($request->all())->validate();
+            $user = $this->create($request->all());
+            event(new Registered($user));
+            DB::commit();
+            return response()->json(["user"=>$user,"message"=>"Account registered successfully, please check your email to activate"]);
+        }catch(\Exception $e){
+            return response()->json(["message"=>$e->getMessage()]);
+        }
+
     }
 }
