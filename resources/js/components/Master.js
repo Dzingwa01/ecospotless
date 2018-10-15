@@ -126,7 +126,7 @@ class Master extends React.Component {
             console.log("response", response.data);
             if(response.data.status==200){
                 component.setState({auth:true});
-              
+
             }else{
                 component.setState({auth:true});
             }
