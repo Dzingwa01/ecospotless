@@ -111,7 +111,7 @@ class Users extends React.Component {
         return (
             <Paper>
                 <MUIDataTable
-                    title={"Roles List"}
+                    title={"Users List"}
                     data={data}
                     columns={columns}
                     options={options}

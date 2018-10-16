@@ -34,12 +34,7 @@ export default class Navigation extends React.Component {
                     </ListItemIcon>
                     <ListItemText primary="Wash Requests"/>
                 </ListItem>
-                <ListItem button>
-                    <ListItemIcon>
-                        <PeopleIcon/>
-                    </ListItemIcon>
-                    <ListItemText primary="Customers"/>
-                </ListItem>
+
                 <ListItem button>
                     <ListItemIcon>
                         <BarChartIcon/>
@@ -47,7 +42,7 @@ export default class Navigation extends React.Component {
                     <ListItemText primary="Reports"/>
                 </ListItem>
 
-                {/*<Divider/>*/}
+                <Divider/>
                 <ListSubheader inset>Settings</ListSubheader>
                 <ListItem button component={Link} to='/users'>
                     <ListItemIcon>
