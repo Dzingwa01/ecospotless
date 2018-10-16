@@ -7,9 +7,12 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
+import DoneOutline from '@material-ui/icons/DoneOutline';
 import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import Divider from '@material-ui/core/Divider';
+import CallReceived from '@material-ui/icons/Schedule';
+
 // import { Link } from 'react-router-dom';
 import { BrowserRouter, Route, Link,Switch,Redirect } from "react-router-dom";
 
@@ -30,9 +33,15 @@ export default class Navigation extends React.Component {
                 </ListItem>
                 <ListItem button>
                     <ListItemIcon>
-                        <ShoppingCartIcon/>
+                        <DoneOutline/>
                     </ListItemIcon>
-                    <ListItemText primary="Wash Requests"/>
+                    <ListItemText primary="Attended"/>
+                </ListItem>
+                <ListItem button>
+                    <ListItemIcon>
+                        <CallReceived/>
+                    </ListItemIcon>
+                    <ListItemText primary="Outstanding Washes"/>
                 </ListItem>
 
                 <ListItem button>
