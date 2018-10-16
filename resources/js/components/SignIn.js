@@ -66,7 +66,7 @@ class SignIn extends React.Component {
                 'password':''
             }
         };
-
+        console.log("path login",this.props);
         this.handleChange =this.handleChange.bind(this);
         this.handleSubmit =this.handleSubmit.bind(this);
         this.handleClose =this.handleClose.bind(this);
@@ -104,7 +104,7 @@ class SignIn extends React.Component {
         axios.post('/login',user).then(function(response){
             if(response.data.status==200){
                 component.setState({message:response.data.message,open:true});
-                window.location.href ='/';
+                window.location.href ='/dashboard';
             }else{
                 component.setState({message:response.data.message,open:true});
             }
@@ -123,11 +123,12 @@ class SignIn extends React.Component {
             <CssBaseline />
             <main className={classes.layout}>
                 <Paper className={classes.paper}>
-                    <Avatar
-                        alt="Adelle Charles"
+                    <img
+                        alt="Logo"
                         src="/images/logo.jpg"
                         className={classNames(classes.avatar, classes.bigAvatar)}
                     />
+
                     <Typography component="h1" variant="h5">
                         Sign in
                     </Typography>

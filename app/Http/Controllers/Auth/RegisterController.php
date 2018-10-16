@@ -11,6 +11,8 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class RegisterController extends Controller
 {
@@ -58,6 +60,7 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'contact_number'=>'required',
             'password' => 'required|string|min:6|confirmed',
+            'roles' => 'required'
         ]);
     }
 
@@ -69,7 +72,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'surname' => $data['surname'],
             'contact_number' => $data['contact_number'],
@@ -78,6 +81,8 @@ class RegisterController extends Controller
             'verification_token'=>base64_encode($data['email']),
             'verified'=>0
         ]);
+
+        $user->assignRole($data('roles'));
     }
 
     public function register(Request $request)

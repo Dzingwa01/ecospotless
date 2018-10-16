@@ -7,8 +7,10 @@
 require('./bootstrap');
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route, browserHistory } from 'react-router';
+import { BrowserRouter, Route, Link,Switch,Redirect } from "react-router-dom";
 import App from "./components/App";
+import Master from "./components/Master";
+
 
 render(
     <App/>,

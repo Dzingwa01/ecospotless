@@ -1,9 +1,16 @@
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
-import Dashboard from './Dashboard';
-import { BrowserRouter, Route, Link,Switch,Redirect } from "react-router-dom";
-import Home from '../components/Home';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+
 const styles = {
     root: {
         flexGrow: 1,
@@ -36,7 +43,7 @@ const styles = {
     },
 };
 
-class Master extends React.Component {
+class Landing extends React.Component {
 
     constructor(props) {
         super(props);
@@ -48,9 +55,7 @@ class Master extends React.Component {
             left: false,
             bottom: false,
             right: false,
-            loading:true
         };
-
         this.handle = this.handle.bind(this);
         this.handleMenu = this.handleMenu.bind(this);
         this.handleClose = this.handleClose.bind(this);
@@ -63,7 +68,7 @@ class Master extends React.Component {
     }
 
     componentDidMount() {
-        this.toggleDrawer = this.toggleDrawer.bind(this);
+
         this.checkAuthentication();
     }
 
@@ -119,43 +124,76 @@ class Master extends React.Component {
         axios.get('/admin/check-status').then(function (response) {
             console.log("response", response.data);
             if (response.data.status == 200) {
-                component.setState({auth: true,loading:false});
-                console.log("Checks state",component.state);
+                component.setState({auth: true});
+
             } else {
-                component.setState({auth: false,loading:false});
+                component.setState({auth: false});
             }
 
         }).catch((error) => {
             console.log("error", error);
-            component.setState({auth: false,loading:false});
+            component.setState({auth: false});
         });
     }
 
 
     render() {
         const {classes} = this.props;
-        const {auth, anchorEl, loading} = this.state;
+        const {auth, anchorEl, left} = this.state;
         const open = Boolean(anchorEl);
 
         return (
             <div className={classes.root}>
-                {!loading && !auth && (
+                <AppBar position="static">
+                    <Toolbar>
+                        <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+                            <MenuIcon />
+                        </IconButton>
+                        <img
+                            alt="Logo"
+                            src="/images/mini_logo.jpg"
+                            onClick={this.onButtonClick}
+                        />
+                        <Typography className={classes.grow}/>
 
-                   <Home/>
-                    )}
-                {auth && !loading && (
-                    <BrowserRouter>
-                        <Dashboard/>
-                    </BrowserRouter>
-                )}
+                        <div>
+                            <IconButton
+                                aria-owns={open ? 'menu-appbar' : null}
+                                aria-haspopup="true"
+                                onClick={this.handleMenu}
+                                color="inherit"
+                                className={classes.iconBtn}
+                            >
+                                <AccountCircle/>
+                            </IconButton>
+                            <Menu
+                                id="menu-appbar"
+                                anchorEl={anchorEl}
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                open={open}
+                                onClose={this.handleClose}
+                            >
+                                <MenuItem onClick={this.login}>Login</MenuItem>
+                                <MenuItem onClick={this.register}>Register</MenuItem>
+                            </Menu>
+                        </div>
 
+                    </Toolbar>
+                </AppBar>
             </div>
         );
     }
 }
 
-Master.propTypes = {
+Landing.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Master);
+export default withStyles(styles)(Landing);

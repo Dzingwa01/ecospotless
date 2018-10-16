@@ -16,3 +16,8 @@ Route::view('/{path?}', 'app');
 Auth::routes();
 Route::get('/admin/check-status','HomeController@checkStatus');
 //Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['auth']], function() {
+    Route::resource('roles','RoleController');
+    Route::resource('users','UserController');
+
+});

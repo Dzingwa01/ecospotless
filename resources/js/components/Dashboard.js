@@ -10,15 +10,16 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import {mainListItems, secondaryListItems} from '../Navigation';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import axios from 'axios';
+import { BrowserRouter, Route, Link,Switch,Redirect } from "react-router-dom";
+import Router from '../Router';
+import Navigation from '../Navigation';
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -166,6 +167,7 @@ class Dashboard extends React.Component {
         const {anchorEl} = this.state;
         const open = Boolean(anchorEl);
         return (
+
             <React.Fragment>
                 <CssBaseline/>
                 <div className={classes.root}>
@@ -234,15 +236,12 @@ class Dashboard extends React.Component {
                             </IconButton>
                         </div>
                         <Divider/>
-                        <List>{mainListItems}</List>
-                        <Divider/>
-                        <List>{secondaryListItems}</List>
+                        <List><Navigation/></List>
                     </Drawer>
                     <main className={classes.content}>
                         <div className={classes.appBarSpacer}/>
-                        <Typography variant="h4" gutterBottom component="h2">
-                            Welcome to your dashboard
-                        </Typography>
+
+                       <Router/>
 
                     </main>
                 </div>
