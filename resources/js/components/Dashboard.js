@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import Notifications from '@material-ui/icons/Notifications';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import {mainListItems, secondaryListItems} from '../Navigation';
 import AccountCircle from '@material-ui/icons/AccountCircle';
@@ -196,6 +197,14 @@ class Dashboard extends React.Component {
                             >
                                 Dashboard
                             </Typography>
+                            <IconButton
+                                aria-owns={open ? 'menu-appbar' : null}
+                                aria-haspopup="true"
+                                onClick={this.handleMenu}
+                                color="inherit"
+                            >
+                                <Notifications/>
+                            </IconButton>
                             <IconButton
                                 aria-owns={open ? 'menu-appbar' : null}
                                 aria-haspopup="true"

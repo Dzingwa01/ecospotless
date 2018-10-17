@@ -10,6 +10,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import Paper from '@material-ui/core/Paper';
 
 const styles = {
     root: {
@@ -187,6 +188,11 @@ class Landing extends React.Component {
 
                     </Toolbar>
                 </AppBar>
+                <Paper>
+                    <Typography>
+                        Welcome to Ecospotless
+                    </Typography>
+                </Paper>
             </div>
         );
     }

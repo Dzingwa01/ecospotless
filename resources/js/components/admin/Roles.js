@@ -7,6 +7,8 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import axios from 'axios';
 import MUIDataTable from "mui-datatables";
+import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
 
 const styles = theme => ({
     layout: {
@@ -56,7 +58,6 @@ const styles = theme => ({
 });
 
 class Roles extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -113,7 +114,11 @@ class Roles extends React.Component {
         };
         return (
             <Paper>
-
+                <div>
+                    <Button variant="fab" color="primary" aria-label="Add" className={classes.button}>
+                        <AddIcon />
+                    </Button>
+                </div>
                 <MUIDataTable
                     title={"Roles List"}
                     data={data}
@@ -139,5 +144,7 @@ class Roles extends React.Component {
         );
     }
 }
-
+Roles.propTypes={
+    classes: PropTypes.object.isRequired,
+}
 export default withStyles(styles)(Roles);
