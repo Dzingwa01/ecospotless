@@ -34,7 +34,8 @@ class RoleController extends Controller
     {
         //
         $permission = Permission::get();
-        return response()->json(["permission"=>$permission]);
+        $roles = Role::all();
+        return response()->json(["permission"=>$permission,"roles"=>$roles]);
     }
 
     /**
@@ -50,14 +51,15 @@ class RoleController extends Controller
         try{
             $this->validate($request, [
                 'name' => 'required|unique:roles,name',
-                'permission' => 'required',
+                'permissions' => 'required',
             ]);
 
             $role = Role::create(['name' => $request->input('name')]);
-            $role->syncPermissions($request->input('permission'));
+            $role->syncPermissions($request->input('permissions'));
 
             DB::commit();
-            return response()->json(['status'=>200,"role"=>$role]);
+            $roles = Role::all();
+            return response()->json(['status'=>200,"role"=>$role,"roles"=>$roles,"message"=>"Role saved successfully"]);
         }catch(\Exception $e){
             DB::rollback();
             return response()->json(['status'=>500,"message"=>$e->getMessage()]);
@@ -134,18 +136,22 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         //
         DB::beginTransaction();
         try{
-            DB::table("roles")->where('id',$id)->delete();
+            $input = $request->all();
+            foreach ($input as $role){
+                DB::table("roles")->where('id',$role)->delete();
+            }
             DB::commit();
-            return response()->json(['status'=>200,"message"=>"Role deleted successfully"]);
+            $roles = Role::all();
+            return response()->json(['status'=>200,"message"=>"Roles deleted successfully",'roles'=>$roles]);
 
         }catch(\Exception $e){
             DB::rollback();
-            return response()->json(['status'=>500,"message"=>$e->getMessage()]);
+            return response()->json(['status'=>500,"message"=>$e->getMessage(),'roles'=>[]]);
         }
 
     }

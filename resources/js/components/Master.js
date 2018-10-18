@@ -37,6 +37,7 @@ const styles = {
     },
 };
 
+
 class Master extends React.Component {
 
     constructor(props) {
