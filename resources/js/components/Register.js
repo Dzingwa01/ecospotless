@@ -17,6 +17,9 @@ import axios from 'axios';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import Image from 'material-ui-image';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const styles = theme => ({
     layout: {
@@ -69,6 +72,13 @@ const styles = theme => ({
     close: {
         padding: theme.spacing.unit / 2,
     },
+    formControl: {
+        margin: theme.spacing.unit,
+        minWidth: 160,
+    },
+    selectEmpty: {
+        marginTop: theme.spacing.unit * 2,
+    },
 });
 
 class Register extends React.Component {
@@ -82,7 +92,8 @@ class Register extends React.Component {
             'name':'',
             'contact_number':'',
             'password':'',
-            'password_confirmation':''
+            'password_confirmation':'',
+                'role':''
         },
             open:false,
             message:'',
@@ -112,8 +123,10 @@ class Register extends React.Component {
     handleChange (event){
         let name = event.target.name;
         let user = this.state.user;
+        console.log("name ",name);
         user[name] = event.target.value;
         this.setState({user:user});
+        console.log("namusere ",this.state.user);
     }
 
     handleSubmit (e){
@@ -140,8 +153,8 @@ class Register extends React.Component {
                 <CssBaseline/>
                 <main className={classes.layout}>
                     <Paper className={classes.paper}>
-                        <Avatar
-                            alt="Adelle Charles"
+                        <img
+                            alt="Logo"
                             src="/images/logo.jpg"
                             className={classNames(classes.avatar, classes.bigAvatar)}
                         />
@@ -165,7 +178,21 @@ class Register extends React.Component {
                                 <InputLabel htmlFor="contact_number">Contact Number</InputLabel>
                                 <Input id="contact_number" name="contact_number" onChange={this.handleChange} autoComplete="contact_number" value={user.contact_number} />
                             </FormControl>
+                            <FormControl className={classes.formControl}>
+                                <InputLabel htmlFor="age-simple">Select Account type</InputLabel>
+                                <Select required
+                                    value={user.role}
+                                    onChange={this.handleChange}
+                                    inputProps={{
+                                        name: 'role',
+                                        id: 'role-select',
+                                    }}
+                                >
+                                    <MenuItem value="client">Client</MenuItem>
+                                    <MenuItem value="cleaner">Cleaner</MenuItem>
 
+                                </Select>
+                            </FormControl>
                             <FormControl margin="normal" required fullWidth>
                                 <InputLabel htmlFor="password">Password</InputLabel>
                                 <Input
@@ -202,43 +229,46 @@ class Register extends React.Component {
                                 Register
                             </Button>
                         </form>
-                        <Snackbar
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'left',
-                            }}
-                            open={this.state.open}
-                            autoHideDuration={6000}
-                            onClose={this.handleClose}
-                            ContentProps={{
-                                'aria-describedby': 'message-id',
-                            }}
-                            message={<span id="message-id">{message}</span>}
-                            action={[
-                                <Button key="undo" color="secondary" size="small" onClick={this.handleClose}>
-                                  OK
-                                </Button>,
-                                <IconButton
-                                    key="close"
-                                    aria-label="Close"
-                                    color="inherit"
-                                    className={classes.close}
-                                    onClick={this.handleClose}
-                                >
-                                    <CloseIcon />
-                                </IconButton>,
-                            ]}
-                        />
+
                     </Paper>
 
                 </main>
+                <Snackbar
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    open={this.state.open}
+                    autoHideDuration={6000}
+                    onClose={this.handleClose}
+                    ContentProps={{
+                        'aria-describedby': 'message-id',
+                    }}
+                    message={<span id="message-id">{message}</span>}
+                    action={[
+                        <Button key="undo" color="secondary" size="small" onClick={this.handleClose}>
+                            OK
+                        </Button>,
+                        <IconButton
+                            key="close"
+                            aria-label="Close"
+                            color="inherit"
+                            className={classes.close}
+                            onClick={this.handleClose}
+                        >
+                            <CloseIcon />
+                        </IconButton>,
+                    ]}
+                />
             </React.Fragment>
+
         );
     }
 }
 
 Register.propTypes = {
     classes: PropTypes.object.isRequired,
+    SelectInput:PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(Register);

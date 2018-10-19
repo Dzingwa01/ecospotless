@@ -21,5 +21,4 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles','RoleController');
     Route::post('/delete/roles','RoleController@destroy');
     Route::resource('users','UserController');
-
 });

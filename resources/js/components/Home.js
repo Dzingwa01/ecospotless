@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import axios from 'axios';
@@ -111,7 +111,7 @@ class Home extends React.Component {
                         <Switch>
                             <Route exact path="/" component={Landing} />
                             <Route exact path="/login"  component={SignIn} />
-                            <Route exact path="/register" component={Register} />
+                            <Route exact path="/register" component={Register} SelectInput={""}  />
                             <Redirect to="/" />
                         </Switch>
                     </div>
@@ -121,5 +121,7 @@ class Home extends React.Component {
         );
     }
 }
-
+Home.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
 export default withStyles(styles)(Home);

@@ -60,7 +60,7 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'contact_number'=>'required',
             'password' => 'required|string|min:6|confirmed',
-            'roles' => 'required'
+            'role' => 'required|string'
         ]);
     }
 
@@ -81,8 +81,9 @@ class RegisterController extends Controller
             'verification_token'=>base64_encode($data['email']),
             'verified'=>0
         ]);
-
-        $user->assignRole($data('roles'));
+        $roles = [];
+        array_push($roles,strtolower($data['role']));
+        $user->assignRole($roles);
     }
 
     public function register(Request $request)

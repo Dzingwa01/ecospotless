@@ -118,19 +118,23 @@ class Master extends React.Component {
     checkAuthentication() {
         let component = this;
         console.log("Check auth", "checking");
-        axios.get('/admin/check-status').then(function (response) {
-            console.log("response", response.data);
-            if (response.data.status == 200) {
-                component.setState({auth: true,loading:false});
-                console.log("Checks state",component.state);
-            } else {
+        try{
+            axios.get('/admin/check-status').then(function (response) {
+                console.log("response", response.data);
+                if (response.data.status == 200) {
+                    component.setState({auth: true,loading:false});
+                    console.log("Checks state",component.state);
+                } else {
+                    component.setState({auth: false,loading:false});
+                }
+            }).catch((error) => {
+                console.log("error", error);
                 component.setState({auth: false,loading:false});
-            }
+            });
+        }catch(e){
+           console.log("Unauthorized",e);
+        }
 
-        }).catch((error) => {
-            console.log("error", error);
-            component.setState({auth: false,loading:false});
-        });
     }
 
 

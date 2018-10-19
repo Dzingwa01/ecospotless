@@ -16,6 +16,7 @@ import axios from 'axios';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import { Link } from 'react-router-dom';
 
 const styles = theme => ({
     layout: {
@@ -55,7 +56,6 @@ const styles = theme => ({
         marginTop: theme.spacing.unit * 3,
     },
 });
-
 
 class SignIn extends React.Component {
     constructor(props) {
@@ -152,6 +152,8 @@ class SignIn extends React.Component {
                             control={<Checkbox value="remember" color="primary" />}
                             label="Remember me"
                         />
+                        <br/>
+                        <Link to="/register"><Typography>Do have an account? Register</Typography></Link><br/>
                         <Button
                             type="submit"
                             fullWidth
