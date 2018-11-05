@@ -1,48 +1,7 @@
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import {withStyles} from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import Paper from '@material-ui/core/Paper';
-
-const styles = {
-    root: {
-        flexGrow: 1,
-    },
-    grow: {
-        flexGrow: 1,
-    },
-    menuButton: {
-        marginLeft: -12,
-        marginRight: 20,
-    },
-    avatar: {
-        margin: 10,
-    },
-    imageProp: {
-        width: 160,
-
-    },
-    list: {
-        width: 250,
-    },
-    fullList: {
-        width: 'auto',
-    },
-    iconBtn: {
-        right: 0,
-    },
-    title: {
-        flexGrow: 1,
-    },
-};
+import { findDOMNode } from 'react-dom';
+import $ from 'jquery';
 
 class Landing extends React.Component {
 
@@ -104,7 +63,7 @@ class Landing extends React.Component {
     }
 
     handleClose(event) {
-        this.setState({ anchorEl: null });
+        this.setState({anchorEl: null});
     }
 
     onButtonClick() {
@@ -126,7 +85,6 @@ class Landing extends React.Component {
             console.log("response", response.data);
             if (response.data.status == 200) {
                 component.setState({auth: true});
-
             } else {
                 component.setState({auth: false});
             }
@@ -142,64 +100,48 @@ class Landing extends React.Component {
         const {classes} = this.props;
         const {auth, anchorEl, left} = this.state;
         const open = Boolean(anchorEl);
-
+        const cards = [1, 2, 3, 4];
         return (
-            <div className={classes.root}>
-                <AppBar position="static">
-                    <Toolbar>
-                        <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                            <MenuIcon />
-                        </IconButton>
-                        <img
-                            alt="Logo"
-                            src="/images/mini_logo.jpg"
-                            onClick={this.onButtonClick}
-                        />
-                        <Typography className={classes.grow}/>
+            <div>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="#">Navbar</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
 
-                        <div>
-                            <IconButton
-                                aria-owns={open ? 'menu-appbar' : null}
-                                aria-haspopup="true"
-                                onClick={this.handleMenu}
-                                color="inherit"
-                                className={classes.iconBtn}
-                            >
-                                <AccountCircle/>
-                            </IconButton>
-                            <Menu
-                                id="menu-appbar"
-                                anchorEl={anchorEl}
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                open={open}
-                                onClose={this.handleClose}
-                            >
-                                <MenuItem onClick={this.login}>Login</MenuItem>
-                                <MenuItem onClick={this.register}>Register</MenuItem>
-                            </Menu>
-                        </div>
-
-                    </Toolbar>
-                </AppBar>
-                <Paper>
-                    <Typography>
-                        Welcome to Ecospotless
-                    </Typography>
-                </Paper>
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul className="navbar-nav mr-auto">
+                            <li className="nav-item active">
+                                <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="#">Link</a>
+                            </li>
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Dropdown
+                                </a>
+                                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a className="dropdown-item" href="#">Action</a>
+                                    <a className="dropdown-item" href="#">Another action</a>
+                                    <div className="dropdown-divider"></div>
+                                    <a className="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link disabled" href="#">Disabled</a>
+                            </li>
+                        </ul>
+                        <form className="form-inline my-2 my-lg-0">
+                            <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+                                <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                    </div>
+                </nav>
             </div>
         );
     }
 }
 
-Landing.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
 
-export default withStyles(styles)(Landing);
+export default Landing;

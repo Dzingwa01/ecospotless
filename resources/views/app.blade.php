@@ -9,6 +9,8 @@
     <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
     {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">--}}
 
     <!-- Compiled and minified JavaScript -->
@@ -18,5 +20,6 @@
 <body>
 <div id="app"></div>
 <script src="{{asset('js/app.js')}}" ></script>
+<script type="text/javascript" src="js/init.js"></script>
 </body>
 </html>

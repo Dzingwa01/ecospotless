@@ -4,39 +4,6 @@ import {withStyles} from '@material-ui/core/styles';
 import Dashboard from './Dashboard';
 import { BrowserRouter, Route, Link,Switch,Redirect } from "react-router-dom";
 import Home from '../components/Home';
-const styles = {
-    root: {
-        flexGrow: 1,
-        position: 'relative',
-    },
-    grow: {
-        flexGrow: 1,
-    },
-    menuButton: {
-        marginLeft: -12,
-        marginRight: 20,
-    },
-    avatar: {
-        margin: 10,
-    },
-    imageProp: {
-        width: 160,
-
-    },
-    list: {
-        width: 250,
-    },
-    fullList: {
-        width: 'auto',
-    },
-    iconBtn: {
-        right: 0,
-    },
-    title: {
-        flexGrow: 1,
-    },
-};
-
 
 class Master extends React.Component {
 
@@ -144,9 +111,8 @@ class Master extends React.Component {
         const open = Boolean(anchorEl);
 
         return (
-            <div className={classes.root}>
+            <div>
                 {!loading && !auth && (
-
                    <Home/>
                     )}
                 {auth && !loading && (
@@ -160,8 +126,5 @@ class Master extends React.Component {
     }
 }
 
-Master.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
 
-export default withStyles(styles)(Master);
+export default (Master);

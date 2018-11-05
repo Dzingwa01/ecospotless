@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
-import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+
 import axios from 'axios';
 import { BrowserRouter, Route, Link,Switch,Redirect } from "react-router-dom";
 import Landing from './Landing';
 import SignIn from './SignIn';
 import Register from './Register';
+import material from 'materialize-css';
 
 const styles = theme => ({
     layout: {
@@ -121,7 +120,5 @@ class Home extends React.Component {
         );
     }
 }
-Home.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
-export default withStyles(styles)(Home);
+
+export default Home;
