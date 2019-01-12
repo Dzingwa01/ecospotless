@@ -1,6 +1,10 @@
 nav{
     background-color: #22BC67;
 }
+.page-footer{
+    background-color: #22BC67!important;
+}
+
 .btn{
     background-color: #1393FF;
 }
@@ -17,4 +21,10 @@ nav ul a {
 input{
     padding-right: 2em;
     padding-left: 2em;
+}
+
+li{
+    text-align: justify;
+    color:black!important;
+    font-size: 16px!important;
 }
