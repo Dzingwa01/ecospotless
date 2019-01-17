@@ -12,12 +12,31 @@ nav ul a {
     font-weight: bolder;
 }
 
-.login-form{
-    margin:auto;
-    width: 400px;
-
-    margin-top:5%;
+@media screen and (max-width: 620px) {
+    .login-form{
+        margin:auto;
+        width: 300px;
+        margin-top:5%;
+    }
+    .register-form{
+        margin:auto;
+        width: 300px;
+        margin-top:5%;
+    }
 }
+@media screen and (min-width: 620px) {
+    .login-form{
+        margin:auto;
+        width: 400px;
+        margin-top:5%;
+    }
+    .register-form{
+        margin:auto;
+        width: 400px;
+        margin-top:5%;
+    }
+}
+
 input{
     padding-right: 2em;
     padding-left: 2em;

@@ -4,7 +4,7 @@
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link type="text/css" rel="stylesheet" href="css/site-styles.css"  media="screen,projection"/>
     <!--Let browser know website is optimized for mobile-->
     <title>{{ config('app.name', 'Ecospotless') }}</title>
@@ -92,12 +92,14 @@
         src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
-<script type="text/javascript" src="js/materialize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script>
     $(document).ready(function () {
         M.AutoInit();
         $('.dropdown-trigger-cus').dropdown();
         $('.dropdown-trigger-c').dropdown();
+        $('select').formSelect();
+
     });
 </script>
 </body>

@@ -15,8 +15,9 @@
     <div class="row">
         <div class="login-form">
             <form class="col s12 card" method="post">
-                <div><a href="/">
-                <img style="width: 100%" src="{{asset('img/ecospotless_cover.jpg')}}"/></a>
+                @csrf
+                <div class="center">
+                    <img style="width: 60%" src="{{asset('img/ecospotless_cover.jpg')}}"/></a>
                 </div>
                 <div>
                 <h5 class="center-align">Log In</h5>

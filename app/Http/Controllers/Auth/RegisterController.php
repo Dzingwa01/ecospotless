@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Role;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -50,8 +51,11 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
+            'surname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:6',
+            'contact_number' => 'required',
+            'role'=>'required'
         ]);
     }
 
@@ -63,10 +67,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'surname' => $data['surname'],
+            'contact_number' => $data['contact_number'],
             'password' => Hash::make($data['password']),
         ]);
+
+        $role = Role::where('name',$data['role'])->first();
+        $user->roles()->attach($role->id);
+        return $user;
+    }
+
+    public function verifyEmail(User $user){
+        $verification_time = Carbon::now();
+        $user->email_verified_at = $verification_time;
+        $user->save();
+        return view('account.activation-success',compact('user'));
     }
 }
