@@ -16,3 +16,13 @@ Route::get('/', function () {
 });
 Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
+/**
+ * Users Controller
+ */
+Route::resource('users','UsersController');
+Route::resource('prices','PriceController');
+
+Route::get('get-users','UsersController@getUsers')->name('get-users');
+Route::get('/user/delete/{user}','UsersController@destroy');
+Route::get('account-activation/{user}','RegisterController@verifyEmail');
+Route::get('user-profile','UsersController@getUserProfile');

@@ -47,3 +47,119 @@ li{
     color:black!important;
     font-size: 16px!important;
 }
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+/*td, th{*/
+    /*color:black;*/
+    /*!*font-weight: bolder;*!*/
+    /*!*text-transform: uppercase;*!*/
+    /*font-size:11px;*/
+/*}*/
+.card-title{
+    text-transform: uppercase;
+}
+.tabs .tab a:hover, .tabs .tab a.active{
+    color:black!important;
+    font-weight: bolder!important;
+}
+.tabs .tab a{
+    color:black!important;
+    text-decoration: none!important;
+}
+
+@media screen and (max-width: 640px){
+
+    .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter{
+        text-align: left!important;
+    }
+
+    .dataTables_wrapper .dataTables_length{
+        float: left!important;
+
+    }
+    .dataTables_wrapper .dataTables_filter{
+        width: 160px!important;
+        float: right!important;
+
+    }
+}
+@media screen and (max-width: 640px) {
+    .dataTables_wrapper .dataTables_filter {
+        text-align: left !important;
+    }
+    .step-container_p{
+        width: 450px;
+    }
+    div.step-maker .step > label:last-child{
+        font-size: 10px!important;
+    }
+}
+
+nav a{
+    color:black!important;
+}
+/*h6{*/
+/*margin-top: 1em !important;*/
+/*}*/
+
+#users-table_length{
+    width: 60px!important;
+}
+#roles-table_length{
+    width: 60px!important;
+}
+
+form{
+    margin-top:1.2em!important;
+}
+
+.sidenav .user-view{
+    margin-left: 20%!important;
+}
+p {
+    line-height: 2rem;
+}
+
+
+
+.parallax-container {
+    min-height: 380px;
+    line-height: 0;
+    height: auto;
+    color: rgba(255,255,255,.9);
+}
+.parallax-container .section {
+    width: 100%;
+}
+
+@media only screen and (max-width : 992px) {
+    .parallax-container .section {
+        position: absolute;
+        top: 40%;
+    }
+    #index-banner .section {
+        top: 10%;
+    }
+}
+
+@media only screen and (max-width : 600px) {
+    #index-banner .section {
+        top: 0;
+    }
+}
+
+.icon-block {
+    padding: 0 15px;
+}
+.icon-block .material-icons {
+    font-size: inherit;
+}
+
+footer.page-footer {
+    margin: 0;
+}

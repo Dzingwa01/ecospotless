@@ -77,6 +77,8 @@
                                         class="tiny material-icons">account_circle</i>Manage Users</a></li>
                         <li><a style="color:black;font-weight: bolder" class="" href="{{url('roles')}}"><i
                                         class="tiny material-icons">security</i>Roles</a></li>
+                        <li><a style="color:black;font-weight: bolder" class="" href="{{url('permissions')}}"><i
+                                        class="tiny material-icons">security</i>Permissions</a></li>
                     </ul>
                 </div>
             </li>
@@ -162,7 +164,7 @@
                 "Google": 'https://placehold.it/250x250'
             },
         });
-//        M.AutoInit();
+        M.AutoInit();
         $('.sidenav').sidenav();
         $(".dropdown-trigger").dropdown();
         $('select').formSelect();
