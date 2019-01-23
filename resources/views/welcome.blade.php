@@ -81,11 +81,20 @@
         <tr>
             <th>Name</th>
             <th>Description</th>
+            <th>Vehicle</th>
             <th>Price</th>
         </tr>
         </thead>
         <tbody>
 
+            @foreach($prices as $price)
+                <tr>
+                    <td>{{$price->service}}</td>
+                    <td>{{$price->description}}</td>
+                    <td>{{$price->vehicle->name}}</td>
+                    <td>{{'R '.$price->price}}</td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
     </div>

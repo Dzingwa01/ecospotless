@@ -64,6 +64,12 @@
                 <div class="collapsible-header" style="color:black;font-weight: bolder"> <i class="tiny material-icons">money</i><a href="#!" class="" style="color:black;"> Pricing</a>
                 </div>
                 <div class="collapsible-body" >
+                    <ul>
+                        <li><a style="color:black;font-weight: bolder" class="" href="{{url('prices')}}"><i
+                                        class="tiny material-icons">account_circle</i>Manage Prices</a></li>
+                        <li><a style="color:black;font-weight: bolder" class="" href="{{url('vehicle-types')}}"><i
+                                        class="tiny material-icons">security</i>Vehicle</a></li>
+                       </ul>
                 </div>
             </li>
         </ul>

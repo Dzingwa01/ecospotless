@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Price;
 use App\VehicleType;
 use Illuminate\Http\Request;
+
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\DB;
 
-class PriceController extends Controller
+class VehicleTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,18 +18,17 @@ class PriceController extends Controller
     public function index()
     {
         //
-        $vehicles = VehicleType::all();
-
-        return view('prices.index',compact('vehicles'));
+        return view('vehicle-types.index');
     }
 
-    public function getPrices(){
-        $prices = Price::with('vehicle')->get();
-        return Datatables::of($prices)->addColumn('action', function ($price) {
-            $re = '/prices/' . $price->id;
-            $sh = '/prices/show/' . $price->id;
-            $del = '/prices/delete/' . $price->id;
-            return '<a href=' . $re . ' title="Edit Price"><i class="material-icons">create</i></a><a href=' . $del . ' title="Delete Price" style="color:red"><i class="material-icons">delete_forever</i></a>';
+    public function getVehicles(){
+        $vehicles = VehicleType::all();
+
+        return Datatables::of($vehicles)->addColumn('action', function ($vehicle) {
+            $re = '/vehicles/' . $vehicle->id;
+            $sh = '/vehicles/show/' . $vehicle->id;
+            $del = '/vehicles/delete/' . $vehicle->id;
+            return '<a href=' . $re . ' title="Edit Vehicle"><i class="material-icons">create</i></a><a href=' . $del . ' title="Delete Vehicle" style="color:red"><i class="material-icons">delete_forever</i></a>';
         })
             ->make(true);
     }
@@ -56,22 +55,22 @@ class PriceController extends Controller
         DB::beginTransaction();
         try{
             $input = $request->all();
-            $price = Price::create($input);
+            $vehicle = VehicleType::create($input);
             DB::commit();
-            return response()->json(['message'=>'Price Saved Successfully','price'=>$price],200);
+            return response()->json(['message'=>'Vehicle Type Saved Successfully','vehicle'=>$vehicle],200);
         }catch(Exception $e){
             DB::rollBack();
-            return response()->json(['message'=>'Price Could not be save, please contact your system admin '.$e->getMessage()],200);
+            return response()->json(['message'=>'Vehicle Could not be save, please contact your system admin '.$e->getMessage()],200);
         }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Price  $price
+     * @param  \App\VehicleType  $vehicleType
      * @return \Illuminate\Http\Response
      */
-    public function show(Price $price)
+    public function show(VehicleType $vehicleType)
     {
         //
     }
@@ -79,10 +78,10 @@ class PriceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Price  $price
+     * @param  \App\VehicleType  $vehicleType
      * @return \Illuminate\Http\Response
      */
-    public function edit(Price $price)
+    public function edit(VehicleType $vehicleType)
     {
         //
     }
@@ -91,10 +90,10 @@ class PriceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Price  $price
+     * @param  \App\VehicleType  $vehicleType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Price $price)
+    public function update(Request $request, VehicleType $vehicleType)
     {
         //
     }
@@ -102,10 +101,10 @@ class PriceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Price  $price
+     * @param  \App\VehicleType  $vehicleType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Price $price)
+    public function destroy(VehicleType $vehicleType)
     {
         //
     }

@@ -114,6 +114,12 @@ nav a{
     width: 60px!important;
 }
 
+#prices-table_length{
+    width: 60px!important;
+}
+#vehicles-table_length{
+    width: 60px!important;
+}
 form{
     margin-top:1.2em!important;
 }

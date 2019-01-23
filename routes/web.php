@@ -12,7 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $prices = \App\Price::with('vehicle')->get();
+    return view('welcome',compact('prices'));
 });
 Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
@@ -21,6 +22,12 @@ Route::get('/home', 'HomeController@index')->name('home');
  */
 Route::resource('users','UsersController');
 Route::resource('prices','PriceController');
+Route::get('get-prices','PriceController@getPrices')->name('get-prices');
+Route::get('/prices/delete/{price}','PriceController@destroy');
+
+Route::resource('vehicle-types','VehicleTypeController');
+Route::get('get-vehicles','VehicleTypeController@getVehicles')->name('get-vehicles');
+Route::get('/vehicles/delete/{vehicle_type}','VehicleTypeController@destroy');
 
 Route::get('get-users','UsersController@getUsers')->name('get-users');
 Route::get('/user/delete/{user}','UsersController@destroy');
