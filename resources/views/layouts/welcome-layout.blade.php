@@ -31,7 +31,7 @@
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="#employment-opportunities"><i class="material-icons left">nature_people</i>Opportunities</a></li>
-                    <li><a href="#"><i class="material-icons left">payment</i>Book Now</a></li>
+                    <li><a href="{{url('login')}}"><i class="material-icons left">payment</i>Book Now</a></li>
                     <li><a href="#about-us"><i class="material-icons left">info_outline</i>About Us</a></li>
                     <li><a href="#contact-us"><i class="material-icons left">contact_mail</i>Contact Us</a></li>
                     <li><a class="dropdown-trigger-cus" href="#!" data-target="dropdown2">Account<i class="material-icons right">arrow_drop_down</i></a></li>
@@ -43,7 +43,7 @@
     <ul class="sidenav" id="mobile-demo">
         <li><a href="#"><i class="material-icons left">home</i>Home</a></li>
         <li><a href="#employment-opportunities"><i class="material-icons left">nature_people</i>Opportunities</a></li>
-        <li><a href="#"><i class="material-icons left">payment</i>Book Now</a></li>
+        <li><a href="{{url('login')}}"><i class="material-icons left">payment</i>Book Now</a></li>
         <li><a href="#about-us"><i class="material-icons left">info_outline</i>About Us</a></li>
         <li><a href="#contact-us"><i class="material-icons left">contact_mail</i>Contact Us</a></li>
         <li class="divider"></li>

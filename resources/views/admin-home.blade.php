@@ -18,9 +18,9 @@
                             </thead>
                             <tbody>
                             <tr>
-                            <td>{{count($car_onwers)}}</td>
-                            <td>{{count($car_valets)}}</td>
-                            <td>{{ count($franchisees)}}</td>
+                            <td>{!! $car_onwers !!}</td>
+                            <td>{!! $car_valets !!}</td>
+                            <td>{!! $franchisees !!}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -30,33 +30,33 @@
                     </div>
                 </div>
             </div>
-            <div class="col s12 m4">
-                <div class="card blue-grey darken-1">
-                    <div class="card-content white-text">
-                        <span class="card-title" style="font-weight: bolder">Pricing</span>
-                        <p style="font-weight: bolder">{{'Total Users - '.count($users)}}</p>
-                        <table>
-                            <thead>
-                            <tr>
-                                <th>Car Owners</th>
-                                <th>Car Valets</th>
-                                <th>Franchisees</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>{{count($car_onwers)}}</td>
-                                <td>{{count($car_valets)}}</td>
-                                <td>{{ count($franchisees)}}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="card-action">
-                        <a href="#">View Pricing</a>
-                    </div>
-                </div>
-            </div>
+            {{--<div class="col s12 m4">--}}
+                {{--<div class="card blue-grey darken-1">--}}
+                    {{--<div class="card-content white-text">--}}
+                        {{--<span class="card-title" style="font-weight: bolder">Pricing</span>--}}
+                        {{--<p style="font-weight: bolder">{{'Total Users - '.count($users)}}</p>--}}
+                        {{--<table>--}}
+                            {{--<thead>--}}
+                            {{--<tr>--}}
+                                {{--<th>Car Owners</th>--}}
+                                {{--<th>Car Valets</th>--}}
+                                {{--<th>Franchisees</th>--}}
+                            {{--</tr>--}}
+                            {{--</thead>--}}
+                            {{--<tbody>--}}
+                            {{--<tr>--}}
+                                {{--<td>{{count($car_onwers)}}</td>--}}
+                                {{--<td>{{count($car_valets)}}</td>--}}
+                                {{--<td>{{ count($franchisees)}}</td>--}}
+                            {{--</tr>--}}
+                            {{--</tbody>--}}
+                        {{--</table>--}}
+                    {{--</div>--}}
+                    {{--<div class="card-action">--}}
+                        {{--<a href="#">View Pricing</a>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div>--}}
             <div class="col s12 m4">
                 <div class="card blue-grey darken-1">
                     <div class="card-content white-text">
@@ -65,16 +65,16 @@
                         <table>
                             <thead>
                             <tr>
-                                <th>Car Owners</th>
-                                <th>Car Valets</th>
-                                <th>Franchisees</th>
+                                <th>Completed</th>
+                                <th>In Progress</th>
+                                <th>Waiting</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td>{{count($car_onwers)}}</td>
-                                <td>{{count($car_valets)}}</td>
-                                <td>{{ count($franchisees)}}</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
                             </tr>
                             </tbody>
                         </table>

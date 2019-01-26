@@ -27,23 +27,18 @@ class HomeController extends Controller
     {
         $user = Auth::user()->load('roles');
 //        dd($user->roles);
-
         $users = User::all();
-        $car_onwers = [];
-        $car_valets = [];
-        $franchisees = [];
-//        foreach ($users as $user){
-//            $cur = $user->load('roles');
-//            if($cur->roles[0]->name == 'client'){
-//                array_push($car_onwers,$cur);
-//            }
-//            else if($cur->roles[0]->name == 'car-valet'){
-//                array_push($car_valets,$cur);
-//            }else if($cur->roles[0]->name == 'franchisee'){
-//                array_push($franchisees,$cur);
-//            }
-//        }
-//        dd($car_valets);
+        $car_onwers = count(User::whereHas('roles',function($query){
+            $query->where('name','client');
+        })->get());
+//        dd($car_onwers);
+        $car_valets = count(User::whereHas('roles',function($query){
+            $query->where('name','car-valet');
+        })->get());
+        $franchisees = count(User::whereHas('roles',function($query){
+            $query->where('name','franchisee');
+        })->get());
+
         if($user->roles[0]->name=='client'){
             return view('home');
         }else if($user->roles[0]->name=='app-admin'){

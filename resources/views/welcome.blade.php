@@ -18,7 +18,7 @@
                     </h5>
                 </div>
                 <div class="row center">
-                    <a href="#" id="download-button" class="btn btn-large">Book Now</a>
+                    <a href="{{url('login')}}" id="download-button" class="btn btn-large">Book Now</a>
                 </div>
                 <br><br>
 
@@ -107,7 +107,8 @@
             <br/>
             <br/>
             <div class="row center" style="margin-top:7em;">
-                <h5 class="header col s12" style="font-weight:bolder;color:#fff!important;">Looking for a job as one of our agents?</h5>
+                <h5 class="header col s12" style="font-weight:bolder;color:#fff!important;">Partner with us - Great franchisee opportunities</h5>
+                <h5 class="header col s12" style="font-weight:bolder;color:#fff!important;">Be our Car Valet - Attend to client requests.</h5>
             </div>
             <div class="row center">
                 <a href="#" id="download-button" class="btn btn-large">Apply Now</a>
