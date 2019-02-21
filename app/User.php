@@ -38,8 +38,16 @@ class User extends Authenticatable  implements MustVerifyEmail
         return $this->belongsToMany(Role::class, 'role_users','user_id');
     }
 
-    public function projects(){
-        return $this->hasMany(Project::class);
+    public function requests(){
+        return $this->hasMany(WashRequest::class,'valet_id','id');
+    }
+
+    public function client_requests(){
+        return $this->hasMany(WashRequest::class,'client_id');
+    }
+
+    public function ratings(){
+        return $this->hasMany(Rating::class,'valet_id');
     }
     /**
      * Checks if User has access to $permissions.

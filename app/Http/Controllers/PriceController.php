@@ -34,6 +34,11 @@ class PriceController extends Controller
             ->make(true);
     }
 
+    public function getPricesAPI(){
+        $prices = Price::with('vehicle')->get();
+        return response()->json(['prices'=>$prices],200);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

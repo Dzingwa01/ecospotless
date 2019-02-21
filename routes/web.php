@@ -15,6 +15,11 @@ Route::get('/', function () {
     $prices = \App\Price::with('vehicle')->get();
     return view('welcome',compact('prices'));
 });
+Route::get('mobile-register',function(){
+   return view('mobile-registration');
+});
+
+
 Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 /**

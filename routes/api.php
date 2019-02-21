@@ -16,3 +16,6 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('login_user','ApiLoginController@login');
+Route::get('get_pricing','PriceController@getPricesAPI');
+Route::get('get_current_requests/{client}','WashRequestController@getWashRequests');
