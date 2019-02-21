@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\User;
 use App\WashRequest;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
+use Illuminate\Support\Facades\DB;
 
 class WashRequestController extends Controller
 {
@@ -20,8 +22,8 @@ class WashRequestController extends Controller
 
     public function getWashRequests(User $client){
         $client->load('client_requests');
-        $requests = $client->requests;
-        $requests->load('price','service','vehicle','valet','rating');
+        $requests = $client->client_requests;
+        $requests->load('price','service','valet','rating');
 
         return response()->json(['requests'=>$requests],200);
     }

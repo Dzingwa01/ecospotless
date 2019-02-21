@@ -23,6 +23,12 @@ Route::get('mobile-register',function(){
 Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 /**
+ * Requests Controller
+ */
+
+
+
+/**
  * Users Controller
  */
 Route::resource('users','UsersController');
