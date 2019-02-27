@@ -21,8 +21,52 @@ class WashRequestController extends Controller
     }
 
     public function getWashRequests(User $client){
-        $client->load('client_requests');
+
         $requests = $client->client_requests;
+        $requests->load('price','service','valet','rating');
+        $temp_requests = [];
+        foreach ($requests as $request){
+            if($request->status!='cancelled'){
+                array_push($temp_requests,$request);
+            }
+        }
+        $requests = $temp_requests;
+
+        return response()->json(['requests'=>$requests],200);
+    }
+
+    public function acceptRequest(User $valet,WashRequest $request){
+        DB::beginTransaction();
+        try{
+            $request->status =  'accepted';
+           $request->valet_id = $valet->id;
+           $request->save();
+           DB::commit();
+           return response()->json(['message'=>'Request accepted successfully'],200);
+        }catch(\Exception $e){
+            DB::rollBack();
+            return response()->json(['message'=>'An Error occurred while accepting the request'],500);
+        }
+    }
+
+    public function cancelRequest(User $client,WashRequest $request){
+        DB::beginTransaction();
+        try{
+            $request->status =  'cancelled';
+            $request->client_id = $client->id;
+            $request->save();
+            DB::commit();
+            return response()->json(['message'=>'Request cancelled successfully'],200);
+
+        }catch(\Exception $e){
+            DB::rollBack();
+            return response()->json(['message'=>'An Error occurred while accepting the request'],500);
+        }
+    }
+
+    public function getAvailableRequests(){
+
+        $requests = WashRequest::where('status','pending')->get();
         $requests->load('price','service','valet','rating');
 
         return response()->json(['requests'=>$requests],200);
